@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Preguntas y Respuestas</title>
+</head>
+<body>
+    <h1>PP y Respuestas</h1>
+    <form action="/saludar" method="post">
+        <input type="text" name="nombre" />
+        <input type="submit" value="Enviar" />
+      </form>
+    
+      <head>
+        <meta charset="UTF-8">
+        <title>Hola usuario</title>
+      </head>
+      <body>
+        <p>{{ saludo }}</p>
+      </body>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.min.js"></script>
+<script>
+  var socket = io();
+  socket.on("respuesta", function(data) {
+    document.getElementById("respuesta").innerHTML = data;
+  });
+</script>
+
+<div id="respuesta"></div>
+</body>
+</html>
