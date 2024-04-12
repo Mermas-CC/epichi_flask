@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Preguntas y Respuestas</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.min.js"></script>
+    <script>
+        var socket = io();
+        socket.on("respuesta", function(data) {
+            document.getElementById("respuesta").innerHTML = data;
+        });
+    </script>
 </head>
 <body>
-    <h1>PP y Respuestas</h1>
+    <h1>Preguntas y Respuestas</h1>
     <form action="/saludar" method="post">
         <input type="text" name="nombre" />
         <input type="submit" value="Enviar" />
-      </form>
+    </form>
     
-      <head>
-        <meta charset="UTF-8">
-        <title>Hola usuario</title>
-      </head>
-      <body>
-        <p>{{ saludo }}</p>
-      </body>
-
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.min.js"></script>
-<script>
-  var socket = io();
-  socket.on("respuesta", function(data) {
-    document.getElementById("respuesta").innerHTML = data;
-  });
-</script>
-
-<div id="respuesta"></div>
+    <div id="respuesta">
+        {% if saludo %}
+            <p>{{ saludo }}</p>
+        {% endif %}
+    </div>
 </body>
 </html>
